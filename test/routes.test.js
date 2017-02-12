@@ -58,5 +58,33 @@ describe('routes', () => {
                     .catch(done);
             });
         });
+        describe('Get /users/:name', ()=>{
+            it('returns mitch', (done)=>{
+                chai.spy.on(db.models.User, 'findOne');
+                client.get('/users/mitch')
+                    .expect(200)
+                    .then(result=>{
+                        expect(result.text).to.contain('mitch');
+                    })
+                    .then(()=>{
+                        expect(db.models.User.findOne).to.have.been.called();
+                        expect(db.models.User.findOne).to.have.been.called.exactly(1);
+                    })
+                    .then(()=>done())
+                    .catch(done);
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
     });
 });

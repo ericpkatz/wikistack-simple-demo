@@ -40,13 +40,7 @@ describe('Models', () => {
             it('there are two users', () => {
                 expect(users.length).to.equal(2);
             });
-            it(`will not let you add another mitch`, (done) => {
-                db.models.User.create({ name: 'mitch' }).then(user => done(user)).catch(err => {
-                    expect(err.message).to.equal('Validation error');
-                    done();
-                });
-            });
-            it(`will delete stories and users`, (done) => {
+                        it(`will delete stories and users`, (done) => {
                 db.models.User.destroy({ where: { name: 'mitch' } })
                     .then(() => db.models.User.findAll())
                     .then(returnedusers => expect(returnedusers.length).to.equal(1))
@@ -55,6 +49,13 @@ describe('Models', () => {
                     .then(() => done())
                     .catch(done);
             });
+            it(`will not let you add another mitch`, (done) => {
+                db.models.User.create({ name: 'mitch' }).then(user => done(user)).catch(err => {
+                    expect(err.message).to.equal('Validation error');
+                    done();
+                });
+            });
+
         });
     });
 });
