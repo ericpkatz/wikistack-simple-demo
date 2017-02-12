@@ -46,6 +46,15 @@ describe('Models', () => {
                     done();
                 });
             });
+            it(`will delete stories and users`, (done) => {
+                db.models.User.destroy({ where: { name: 'mitch' } })
+                    .then(() => db.models.User.findAll())
+                    .then(returnedusers => expect(returnedusers.length).to.equal(1))
+                    .then(() => db.models.Story.findAll())
+                    .then(returnedStories => expect(returnedStories.length).to.equal(2))
+                    .then(() => done())
+                    .catch(done);
+            });
         });
     });
 });

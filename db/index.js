@@ -2,7 +2,7 @@ const db = require('./db');
 const User = require('./User');
 const Story = require('./Story');
 
-Story.belongsTo(User);
+Story.belongsTo(User, { onDelete: 'CASCADE' });
 User.hasMany(Story);
 
 const sync = () => {
