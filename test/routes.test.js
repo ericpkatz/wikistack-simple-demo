@@ -28,6 +28,7 @@ describe('routes', ()=> {
         client.get('/users/prof')
           .expect(200)
           .then(result => {
+            console.log(result);
             expect(result.text).not.to.contain('bazz');
             expect(result.text).to.contain('foo');
           })
