@@ -20,7 +20,7 @@ app.get('/tag/:tag', (req, res, next) => {
             include: [db.models.User]
         })
         .then(stories => res.render('tag', { tag: req.params.tag, stories }))
-        .catch(e => next(e));
+        .catch(err => next(err));
 });
 
 app.get('/:title', (req, res, next) => {

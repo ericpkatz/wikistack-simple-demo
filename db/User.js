@@ -1,7 +1,10 @@
 const db = require('./db');
 
 const User = db.define('user', {
-  name: db.Sequelize.STRING
+    name: {
+        type: db.Sequelize.STRING,
+        unique: true
+    }
 });
 
 module.exports = User;
